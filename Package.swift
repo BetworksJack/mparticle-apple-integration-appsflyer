@@ -15,17 +15,15 @@ let package = Package(
       .package(name: "mParticle-Apple-SDK",
                url: "https://github.com/mParticle/mparticle-apple-sdk",
                .upToNextMajor(from: "8.0.0")),
-      .package(name: "AppsFlyerLib",
-               url: "https://github.com/AppsFlyerSDK/AppsFlyerFramework",
-               .upToNextMajor(from: "6.3.3")),
     ],
     targets: [
         .target(
             name: "mParticle-AppsFlyer",
             dependencies: [
               .byName(name: "mParticle-Apple-SDK"),
-              .product(name: "AppsFlyerLib", package: "AppsFlyerLib"),
+              .byName(name: "AppsFlyerLib")
             ]
-        )
+        ),
+        .binaryTarget(name: "AppsFlyerLib", path: "AppsFlyerLib.xcframework")
     ]
 )
